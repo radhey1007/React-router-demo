@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import {useLocation,QueryNavLink,NavLink, Link , Outlet } from 'react-router-dom';
 import './App.css';
 
 function App() {
+
+  function QueryNavLink({ to, ...props }) {
+    let location = useLocation();
+    return <NavLink to={to + location.search} {...props} />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Bookkeeper!</h1>
+      <nav className="navbar">
+          <Link to="/invoices">Invoices</Link> |{" "}
+          <Link to="/expenses">Expenses</Link>
+      </nav>
+      <Outlet />
     </div>
   );
 }
